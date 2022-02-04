@@ -1,11 +1,8 @@
 import pickle
 import sys
 from PyQt5.QtWidgets import QApplication
-from view import TableView
+from views import TableView
 from list import GameList
-
-
-
 
 def main():
     games_list = load()
