@@ -9,6 +9,7 @@ class Game:
     one_hundereded: bool = False
     one_hundereded_date: date = None
     rating: int = None
+    
 
     def complete(self, date=date.today()) -> None:
         """Marks game as complete with the default date of today"""
@@ -36,6 +37,17 @@ class Game:
             self.rating = rating
         else:
             raise TypeError("Enter int from 0-100")
+
+    def get_details(self) -> dict:
+        details = {
+        'title' : self.title,
+        'completed' : self.completed,
+        'completion_date' : self.completion_date,
+        'one_hundereded' : self.one_hundereded,
+        'one_hundereded_date' : self.one_hundereded_date,
+        'rating' : self.rating
+        }
+        return details
 
     def __str__(self):
         return self.title

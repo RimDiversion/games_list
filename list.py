@@ -30,5 +30,11 @@ class GameList:
             _num_of_games += 1
         return (_num_complete, _num_of_games)
 
+    def get_num_games(self) -> int:
+        """Returns number of games in series"""
+        _num_games = len(self.games)
+        return _num_games
+
+
     def __str__(self):
         return str([game.title for game in self.games])
