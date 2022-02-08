@@ -76,11 +76,23 @@ class TestGameList(unittest.TestCase):
         self.game4 = Game('Game 4')
         games = [self.game1, self.game2, self.game3]
         series = Series('Series 1', games)
-        self.game_list = GameList(games=games,series=series)
+        self.game_list = GameList(series=series)
+        for game in games:
+            self.game_list.add_game(game)
         self.test_list = GameList()
 
     def test_get_num_completed(self):
         self.assertEqual(self.game_list.get_num_completed(), (2, 3))
+
+    def test_to_complete(self):
+        self.assertEqual(self.game_list.to_complete(), {'Game 2': self.game2})
+
+    def test_completed(self):
+        self.assertEqual(self.game_list.completed(),
+            {
+            'Game 1': self.game1,
+            'Game 3': self.game3
+            })
 
 class TestMain(unittest.TestCase):
     def setUp(self):

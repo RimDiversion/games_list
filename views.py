@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import (QTableWidget, QDialog, QTableWidgetItem, QLabel, QLineEdit,
     QVBoxLayout, QDialogButtonBox, QFormLayout, QGroupBox, QCheckBox, QDateEdit, QSpinBox,
     )
-
+from PyQt5 import QtCore, QtGui, QtWidgets
  
 class TableView(QTableWidget):
     def __init__(self, games_list, *args):
@@ -62,3 +62,12 @@ class GameEntry(QDialog):
         layout.addRow(QLabel("Rating:"), QSpinBox(minimum=0, maximum=100))
         
         self.formGroupBox.setLayout(layout)
+
+class MainWindow():
+    def setupUI(self, MainWindow, table):
+        self.centralWidget = QtWidgets.QWidget(MainWindow)
+        self.central_layout= QtWidgets.QVBoxLayout(self.centralWidget)
+        self.menubar_layout = QtWidgets.QHBoxLayout()
+
+        self.list = TableView(table)
+        self.central_layout.addWidget(self.list)

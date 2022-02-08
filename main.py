@@ -1,16 +1,17 @@
 import pickle
 import sys
-from PyQt5.QtWidgets import QApplication
-from views import TableView
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from views import TableView, MainWindow
 from list import GameList
 
-def main():
-    games_list = load()
-    length = games_list.get_num_games()
-    app = QApplication(sys.argv)
-    table = TableView(games_list, length, 6)
-    table.show()
-    sys.exit(app.exec_())
+class Main(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        games_list = load()
+        length = games_list.get_num_games()
+        table = TableView(games_list, length, 6)
+        main_window = MainWindow()
+        main_window.setupUI(self, table)
 
 def save(games_list, name: str = 'games_list') -> None:
     """Saves current game list to file using pickle"""
@@ -24,4 +25,6 @@ def load(name: str = 'games_list') -> GameList:
         return games_list
 
 if __name__ == '__main__':
-    main()
+    app = QApplication(sys.argv)
+    win = Main()
+    sys.exit(app.exec_())
